@@ -45,8 +45,30 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text("Home")
       ),
-      body: Center(
-        child: Text('Salve $counter')
+      body: SizedBox(
+        width: double.infinity,
+        height: double.infinity,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              width: 80,
+              height: 80,
+              color: Colors.red,
+            ),
+            Container(
+              width: 80,
+              height: 80,
+              color: Colors.blue,
+            ),
+            Container(
+              width: 80,
+              height: 80,
+              color: Colors.green,
+            ),
+          ],
+        )
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
