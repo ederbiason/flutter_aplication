@@ -36,7 +36,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
   var counter = 0;
+  final names = ['Joao', 'Maria', 'Pedro', 'Eder'];
 
   @override
   Widget build(BuildContext context) {
@@ -45,18 +47,15 @@ class _HomePageState extends State<HomePage> {
       body: SizedBox(
           width: double.infinity,
           height: double.infinity,
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                for (var i = 0; i < 10; i++)
-                  Container(
-                    width: double.infinity,
-                    height: 80,
-                    margin: EdgeInsets.all(8),
-                    color: Colors.red,
-                  ),
-              ],
-          ))),
+          child: ListView.builder(
+            itemCount: names.length,
+            itemBuilder: ((context, index) {
+              final name = names[index];
+              return ListTile(
+                title: Text(name),
+              );
+            }),
+          )),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
