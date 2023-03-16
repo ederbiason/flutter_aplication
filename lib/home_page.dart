@@ -44,43 +44,35 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Home")),
-      body: Column(
+      body: Center(
+        child: Stack(
+        alignment: Alignment.center,
         children: [
-          Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Expanded(child: TextField(controller: controller,)),
-                  IconButton(onPressed: () {
-                    final text = controller.text;
-                    setState(() {
-                      list.add(text);
-                    });
-                    controller.clear();
-                  }, icon: const Icon(Icons.add))
-                ],
-              )),
-          Expanded(
-              child: ListView.builder(
-                itemCount: list.length,
-                itemBuilder: (context, index) {
-                final item = list[index];
-
-                return ListTile(
-                  title: Text(item),
-              );
-            },
-          ))
+          SizedBox(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: Image.network(
+              'https://reservatoriodedopamina.com.br/wp-content/uploads/2022/08/Logo-RD.png',
+              fit: BoxFit.cover,
+            ),
+          ),
+          Container(
+            color: Colors.black.withOpacity(.5),
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: Column(
+              children: [
+                FlutterLogo(size: 150,)
+              ]
+            ),
+          ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          setState(() {
-            counter++;
-          });
-        },
-      ),
+      )
     );
   }
 }
