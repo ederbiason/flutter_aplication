@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_aplication/components/my_button.dart';
 import 'package:flutter_aplication/components/my_textfield.dart';
+import 'package:flutter_aplication/components/square_tile.dart';
 
 class LoginPage extends StatelessWidget {
   final usernameController = TextEditingController();
@@ -23,10 +24,8 @@ class LoginPage extends StatelessWidget {
                 height: 10,
               ),
 
-              Icon(
-                Icons.add_alert_sharp,
-                size: 100,
-                color: Colors.white,
+              Image.asset(
+                'lib/assets/images/logo.png'
               ),
 
               SizedBox(
@@ -112,18 +111,16 @@ class LoginPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
-                    Icons.brightness_1_rounded,
-                    size: 70
-                    ,
+                  SquareTile(
+                    imagePath: 'lib/assets/images/google.png',
+                    height: 40,
                   ),
 
-                  SizedBox(height: 25,),
+                  SizedBox(height: 25, width: 25,),
 
-                  Icon(
-                    Icons.brightness_1_rounded,
-                    size: 70
-                    ,
+                  SquareTile(
+                    imagePath: 'lib/assets/images/facebook.png',
+                    height: 45,
                   ),
                 ],
               ),
