@@ -1,14 +1,53 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_aplication/components/my_button.dart';
 import 'package:flutter_aplication/components/my_textfield.dart';
 import 'package:flutter_aplication/components/square_tile.dart';
 
-class LoginPage extends StatelessWidget {
-  final usernameController = TextEditingController();
+class LoginPage extends StatefulWidget {
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  void signUserIn() {
+  void signUserIn() async {
+    showDialog(context: context, builder: (context) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    });
 
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text, 
+        password: passwordController.text
+      );
+      
+      Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
+
+      if (e.code == 'user-not-found') {
+        wrongEmailMessage();
+      } else if (e.code == "wrong-password") {
+        wrongPasswordMessage();
+      }
+    }
+  }
+
+  void wrongEmailMessage() {
+    showDialog(context: context, builder: (context) {
+      return const AlertDialog(title: Text("Incorrect Email"));
+    });
+  }
+
+  void wrongPasswordMessage() {
+    showDialog(context: context, builder: (context) {
+      return const AlertDialog(title: Text("Incorrect Password"));
+    });
   }
 
   @override
@@ -43,8 +82,8 @@ class LoginPage extends StatelessWidget {
               ),
 
               MyTextField(
-                controller: usernameController,
-                hintText: "Username",
+                controller: emailController,
+                hintText: "E-mail",
                 obscureText: false,
               ),
 
