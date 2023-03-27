@@ -5,6 +5,7 @@ import 'package:flutter_aplication/components/my_textfield.dart';
 import 'package:flutter_aplication/components/square_tile.dart';
 import 'package:flutter_aplication/pages/register_password_account.dart';
 import 'package:flutter_aplication/services/auth_service.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function() onTap;
@@ -156,6 +157,9 @@ class _RegisterPageState extends State<RegisterPage> {
                     keyboardType: TextInputType.phone,
                     labelText: "Phone Number",
                     hintText: "Type your phone number",
+                    inputFormatters: [
+                      MaskTextInputFormatter(mask: '+## (##) 9####-####')
+                    ],
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "Required field";
@@ -170,6 +174,9 @@ class _RegisterPageState extends State<RegisterPage> {
                     keyboardType: TextInputType.datetime,
                     labelText: "Birthdate",
                     hintText: "Type your birthdate",
+                    inputFormatters: [
+                      MaskTextInputFormatter(mask: '##/##/####')
+                    ],
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "Required field";
