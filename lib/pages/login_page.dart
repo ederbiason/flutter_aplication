@@ -19,18 +19,18 @@ class _LoginPageState extends State<LoginPage> {
   final passwordController = TextEditingController();
 
   void signUserIn() async {
-    showDialog(context: context, builder: (context) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
-    });
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        });
 
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text, 
-        password: passwordController.text
-      );
-      
+          email: emailController.text, password: passwordController.text);
+
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
@@ -40,15 +40,19 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void showErrorMessage(String message) {
-    showDialog(context: context, builder: (context) {
-      return AlertDialog(title: Text(message));
-    });
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(title: Text(message));
+        });
   }
 
   void wrongPasswordMessage() {
-    showDialog(context: context, builder: (context) {
-      return const AlertDialog(title: Text("Incorrect Password"));
-    });
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const AlertDialog(title: Text("Incorrect Password"));
+        });
   }
 
   @override
@@ -64,92 +68,79 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: 10,
                 ),
-          
-                Image.asset(
-                  'lib/assets/images/logo.png'
-                ),
-          
+                Image.asset('lib/assets/images/logo.png'),
                 SizedBox(
                   height: 50,
                 ),
-          
                 Text("Welcome to the OPA app! UniFil",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 16,
                     )),
-          
                 SizedBox(
                   height: 25,
                 ),
-          
                 MyTextField(
                   controller: emailController,
-                  hintText: "E-mail",
+                  hintText: "Type your e-mail",
                   obscureText: false,
+                  labelText: "E-mail",
                 ),
-          
-                SizedBox(height: 10,),
-          
+                SizedBox(
+                  height: 10,
+                ),
                 MyTextField(
                   controller: passwordController,
-                  hintText: "Password",
+                  hintText: "Type your password",
                   obscureText: true,
+                  labelText: "Password",
                 ),
-          
-                SizedBox(height: 10,),
-          
+                SizedBox(
+                  height: 10,
+                ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        "Forgot Password ?",
-                        style: TextStyle(color: Colors.grey[600])
-                      )
-                    ],
-                  )
+                    padding: EdgeInsets.symmetric(horizontal: 25.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text("Forgot Password ?",
+                            style: TextStyle(color: Colors.grey[600]))
+                      ],
+                    )),
+                SizedBox(
+                  height: 25,
                 ),
-          
-                SizedBox(height: 25,),
-          
                 MyButton(
                   onTap: signUserIn,
                   text: "Sign In",
                 ),
-          
-                SizedBox(height: 50,),
-          
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Divider(
-                          thickness: 0.5,
-                          color: Colors.grey[400]
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Text(
-                          "Or continue with",
-                          style: TextStyle(color: Colors.grey[700]),
-                        ),
-                      ),
-                      Expanded(
-                        child: Divider(
-                          thickness: 0.5,
-                          color: Colors.grey[400]
-                        ),
-                      ),
-                    ],
-                  )
+                SizedBox(
+                  height: 50,
                 ),
-          
-                SizedBox(height: 20,),
-          
+                Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 25.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child:
+                              Divider(thickness: 0.5, color: Colors.grey[400]),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 10.0),
+                          child: Text(
+                            "Or continue with",
+                            style: TextStyle(color: Colors.grey[700]),
+                          ),
+                        ),
+                        Expanded(
+                          child:
+                              Divider(thickness: 0.5, color: Colors.grey[400]),
+                        ),
+                      ],
+                    )),
+                SizedBox(
+                  height: 20,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -158,9 +149,10 @@ class _LoginPageState extends State<LoginPage> {
                       imagePath: 'lib/assets/images/google.png',
                       height: 40,
                     ),
-          
-                    SizedBox(height: 25, width: 25,),
-          
+                    SizedBox(
+                      height: 25,
+                      width: 25,
+                    ),
                     SquareTile(
                       onTap: () {},
                       imagePath: 'lib/assets/images/facebook.png',
@@ -168,28 +160,20 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ],
                 ),
-          
-                SizedBox(height: 10,),
-          
+                SizedBox(
+                  height: 10,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      "Not a member?",
-                      style: TextStyle(color: Colors.grey[700])
-                    ),
-                    
+                    Text("Not a member?",
+                        style: TextStyle(color: Colors.grey[700])),
                     SizedBox(width: 4),
-          
                     GestureDetector(
                       onTap: widget.onTap,
-                      child: Text(
-                        "Register now",
-                        style: TextStyle(
-                          color: Colors.blue, 
-                          fontWeight: FontWeight.bold
-                        )
-                      ),
+                      child: Text("Register now",
+                          style: TextStyle(
+                              color: Colors.blue, fontWeight: FontWeight.bold)),
                     )
                   ],
                 )
