@@ -23,23 +23,29 @@ class MyTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.symmetric(horizontal: 25.0),
-        child: TextFormField(
-          controller: controller,
-          obscureText: obscureText,
-          keyboardType: keyboardType,
-          decoration: InputDecoration(
-              enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white)),
-              focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey.shade400)),
-              fillColor: Colors.grey.shade200,
-              filled: true,
-              hintText: hintText,
-              labelText: labelText,
-              hintStyle: TextStyle(color: Colors.grey[500])),
-          inputFormatters: inputFormatters,
-          validator: validator,
-        ));
+      padding: EdgeInsets.symmetric(
+        horizontal: 25.0,
+      ),
+      child: TextFormField(
+        controller: controller,
+        obscureText: obscureText,
+        keyboardType: keyboardType,
+        decoration: InputDecoration(
+            enabledBorder:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+            focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.grey.shade400)),
+            fillColor: Colors.grey.shade200,
+            filled: true,
+            hintText: hintText,
+            labelText: labelText,
+            labelStyle: TextStyle(
+              color: Colors.grey[500],
+            ),
+            hintStyle: TextStyle(color: Colors.grey[500])),
+        inputFormatters: inputFormatters,
+        validator: validator,
+      ),
+    );
   }
 }

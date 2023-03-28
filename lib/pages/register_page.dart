@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_aplication/components/my_button.dart';
 import 'package:flutter_aplication/components/my_textfield.dart';
@@ -51,47 +50,6 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
       );
     }
-  }
-
-  void signUserUp() async {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        });
-
-    try {
-      // if (passwordController.text == confirmPasswordController.text) {
-      //   await FirebaseAuth.instance.createUserWithEmailAndPassword(
-      //       email: emailController.text, password: passwordController.text);
-      // } else {
-      //   showErrorMessage("Passwords don't match!");
-      // }
-
-      Navigator.pop(context);
-    } on FirebaseAuthException catch (e) {
-      Navigator.pop(context);
-
-      showErrorMessage(e.code);
-    }
-  }
-
-  void showErrorMessage(String message) {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(title: Text(message));
-        });
-  }
-
-  void wrongPasswordMessage() {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return const AlertDialog(title: Text("Incorrect Password"));
-        });
   }
 
   @override

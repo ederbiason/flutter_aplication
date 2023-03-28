@@ -47,14 +47,6 @@ class _LoginPageState extends State<LoginPage> {
         });
   }
 
-  void wrongPasswordMessage() {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return const AlertDialog(title: Text("Incorrect Password"));
-        });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
