@@ -38,7 +38,6 @@ class HomePage extends StatelessWidget {
             ],
             children: [
               TileLayer(
-                
                 urlTemplate: 'https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.png',
                 userAgentPackageName: 'com.example.app',
               ),
