@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(height: 20),
+                SizedBox(height: 10),
                 Image.asset('lib/assets/images/logoImage.png'),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 5),
