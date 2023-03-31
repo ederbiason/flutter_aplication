@@ -34,12 +34,6 @@ class _RegisterPasswordAccountState extends State<RegisterPasswordAccount> {
     super.dispose();
   }
 
-  // void _registrarConta() {
-  //   if (formKey.currentState!.validate()) {
-  //     // Registrar a conta
-  //   }
-  // }
-
   void signUserUp() async {
     showDialog(
         context: context,
@@ -50,11 +44,16 @@ class _RegisterPasswordAccountState extends State<RegisterPasswordAccount> {
         });
 
     try {
-      if (passwordController.text == confirmPasswordController.text) {
+      if (passwordController.text == confirmPasswordController.text &&
+          isChecked) {
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
             email: widget.email, password: passwordController.text);
       } else {
-        showErrorMessage("Passwords don't match!");
+        if (!isChecked) {
+          showErrorMessage("Please accept the terms to proceed.");
+        } else {
+          showErrorMessage("Passwords don't match!");
+        }
       }
 
       Navigator.pop(context);
