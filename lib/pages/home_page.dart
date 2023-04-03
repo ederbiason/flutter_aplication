@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_aplication/components/report_card.dart';
+import 'package:flutter_aplication/data/reports_data.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
@@ -35,6 +37,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: SafeArea(
         child: Container(
+          height: double.infinity,
           alignment: Alignment.topCenter,
           child: SingleChildScrollView(
             child:
@@ -92,53 +95,17 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child: Stack(children: [
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(15),
-                    decoration: BoxDecoration(
-                        color: Color(0xFF1A254E),
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Assalto - Centro",
-                          style: TextStyle(
-                              shadows: [
-                                Shadow(
-                                    color: Color(0xFFFFFFFF),
-                                    offset: Offset(0, -5))
-                              ],
-                              decoration: TextDecoration.underline,
-                              decorationColor: Color(0xFFFFFFFF),
-                              color: Colors.transparent,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          "Acabei de ser assaltado no centro de Londrina. O suspeito era um homem jovem, vestindo...",
-                          style:
-                              TextStyle(fontSize: 16, color: Color(0xFFFFFFFF)),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: Icon(
-                      Icons.chevron_right,
-                      color: Color(0xFF565A6B),
-                      size: 40,
-                    ),
-                  )
-                ]),
+              Container(
+                height: 200,
+                child: ListView.builder(
+                  itemCount: reportsList.length,
+                  itemBuilder: (context, index) {
+                    final report = reportsList[index];
+
+                    return ReportCard(
+                        title: report.title, description: report.description);
+                  },
+                ),
               ),
             ]),
           ),
