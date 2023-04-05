@@ -26,14 +26,41 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Color(0xFF0E1429),
       appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: signUserOut,
-            icon: Icon(Icons.logout),
-          )
-        ],
-        title: Icon(Icons.menu),
+        title: Text('OPA'),
+        centerTitle: true,
         backgroundColor: Color.fromARGB(255, 9, 13, 27),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Container(
+                child: Text('Menu'),
+              ),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text('Home'),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Configurações'),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text('Log out'),
+              onTap: () {
+                signUserOut();
+              },
+            ),
+          ],
+        ),
       ),
       body: SafeArea(
         child: Container(
