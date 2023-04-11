@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_aplication/components/report_card.dart';
 import 'package:flutter_aplication/data/reports_data.dart';
+import 'package:flutter_aplication/pages/create_report_page.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
@@ -26,7 +27,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Color(0xFF0E1429),
       appBar: AppBar(
-        title: Text('OPA'),
+        title: Image.asset('lib/assets/images/logoImage.png'),
         centerTitle: true,
         backgroundColor: Color.fromARGB(255, 9, 13, 27),
       ),
@@ -70,7 +71,6 @@ class _HomePageState extends State<HomePage> {
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.start, children: [
               SizedBox(height: 10),
-              Image.asset('lib/assets/images/logoImage.png'),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 5),
                 margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
@@ -123,8 +123,9 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               Container(
-                height: 200,
                 child: ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
                   itemCount: reportsList.length,
                   itemBuilder: (context, index) {
                     final report = reportsList[index];
@@ -134,6 +135,9 @@ class _HomePageState extends State<HomePage> {
                   },
                 ),
               ),
+              SizedBox(
+                height: 10,
+              )
             ]),
           ),
         ),
