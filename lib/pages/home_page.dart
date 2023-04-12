@@ -142,6 +142,16 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => CreateReportPage()),
+          );
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Color(0xFF2C3556),
+      ),
     );
   }
 }
