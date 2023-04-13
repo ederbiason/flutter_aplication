@@ -100,36 +100,45 @@ class _CreateReportPageState extends State<CreateReportPage> {
                     },
                   ),
                   SizedBox(height: 16),
-                  MyTextField(
-                    controller: dateController,
-                    obscureText: false,
-                    keyboardType: TextInputType.datetime,
-                    labelText: "Date",
-                    hintText: "Inform the date",
-                    inputFormatters: [
-                      MaskTextInputFormatter(mask: '##/##/####')
+                  Row(
+                    children: [
+                      Expanded(
+                        child: MyTextField(
+                          controller: dateController,
+                          obscureText: false,
+                          keyboardType: TextInputType.datetime,
+                          labelText: "Date",
+                          hintText: "Inform the date",
+                          inputFormatters: [
+                            MaskTextInputFormatter(mask: '##/##/####')
+                          ],
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Required field";
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                      Expanded(
+                        child: MyTextField(
+                          controller: timeController,
+                          obscureText: false,
+                          keyboardType: TextInputType.number,
+                          labelText: "Time",
+                          hintText: "Inform the time",
+                          inputFormatters: [
+                            MaskTextInputFormatter(mask: '##:##')
+                          ],
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Required field";
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
                     ],
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Required field";
-                      }
-                      return null;
-                    },
-                  ),
-                  SizedBox(height: 16),
-                  MyTextField(
-                    controller: timeController,
-                    obscureText: false,
-                    keyboardType: TextInputType.number,
-                    labelText: "Time",
-                    hintText: "Inform the time",
-                    inputFormatters: [MaskTextInputFormatter(mask: '##:##')],
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Required field";
-                      }
-                      return null;
-                    },
                   ),
                   SizedBox(
                     height: 25,
