@@ -16,6 +16,7 @@ class _CreateReportPageState extends State<CreateReportPage> {
   final dateController = TextEditingController();
   final timeController = TextEditingController();
   final addressController = TextEditingController();
+  late String selectedCategory = '';
 
   @override
   Widget build(BuildContext context) {
@@ -72,18 +73,84 @@ class _CreateReportPageState extends State<CreateReportPage> {
                     },
                   ),
                   SizedBox(height: 16),
-                  MyTextField(
-                    controller: categoryController,
-                    obscureText: false,
-                    keyboardType: TextInputType.text,
-                    labelText: "Category",
-                    hintText: "Inform the category",
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Required field";
-                      }
-                      return null;
-                    },
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 25.0,
+                    ),
+                    child: FormField(
+                      builder: (FormFieldState<String> state) {
+                        return InputDecorator(
+                          decoration: InputDecoration(
+                            labelText: 'Category',
+                            errorText: state.hasError ? state.errorText : null,
+                            suffixIcon: Icon(Icons.arrow_drop_down),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white)),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.grey.shade400)),
+                            fillColor: Colors.grey.shade200,
+                            labelStyle: TextStyle(
+                              color: Colors.grey[500],
+                            ),
+                            filled: true,
+                          ),
+                          isEmpty: selectedCategory.isEmpty,
+                          child: DropdownButtonHideUnderline(
+                            child: SizedBox(
+                              width: double.infinity,
+                              child: PopupMenuButton<String>(
+                                onSelected: (String value) {
+                                  state.didChange(value);
+                                  setState(() {
+                                    selectedCategory = value;
+                                  });
+                                },
+                                itemBuilder: (BuildContext context) {
+                                  return <PopupMenuEntry<String>>[
+                                    PopupMenuItem<String>(
+                                      value: 'Roubo',
+                                      child: Text('Roubo'),
+                                    ),
+                                    PopupMenuItem<String>(
+                                      value: 'Furto',
+                                      child: Text('Furto'),
+                                    ),
+                                    PopupMenuItem<String>(
+                                      value: 'Violência',
+                                      child: Text('Violência'),
+                                    ),
+                                    PopupMenuItem<String>(
+                                      value: 'Dano material',
+                                      child: Text('Dano material'),
+                                    ),
+                                    PopupMenuItem<String>(
+                                      value: 'Tráfico de drogas',
+                                      child: Text('Tráfico de drogas'),
+                                    ),
+                                  ];
+                                },
+                                child: Text(selectedCategory),
+                                offset: Offset(0, 32),
+                                elevation: 4,
+                                padding: EdgeInsets.zero,
+                                color: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  side: BorderSide(color: Colors.grey),
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                      validator: (value) {
+                        if (selectedCategory.isEmpty) {
+                          return 'Select a category';
+                        }
+                        return null;
+                      },
+                    ),
                   ),
                   SizedBox(height: 16),
                   MyTextField(
