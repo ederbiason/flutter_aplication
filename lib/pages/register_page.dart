@@ -109,38 +109,45 @@ class _RegisterPageState extends State<RegisterPage> {
                     },
                   ),
                   SizedBox(height: 16),
-                  MyTextField(
-                    controller: phoneNumberController,
-                    obscureText: false,
-                    keyboardType: TextInputType.phone,
-                    labelText: "Phone Number",
-                    hintText: "Type your phone number",
-                    inputFormatters: [
-                      MaskTextInputFormatter(mask: '+## (##) 9####-####')
+                  Row(
+                    children: [
+                      Expanded(
+                        child: MyTextField(
+                          controller: phoneNumberController,
+                          obscureText: false,
+                          keyboardType: TextInputType.phone,
+                          labelText: "Phone Number",
+                          hintText: "Type your phone number",
+                          inputFormatters: [
+                            MaskTextInputFormatter(mask: '+## (##) 9####-####')
+                          ],
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Required field";
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                      Expanded(
+                        child: MyTextField(
+                          controller: birthdateController,
+                          obscureText: false,
+                          keyboardType: TextInputType.datetime,
+                          labelText: "Birthdate",
+                          hintText: "Type your birthdate",
+                          inputFormatters: [
+                            MaskTextInputFormatter(mask: '##/##/####')
+                          ],
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Required field";
+                            }
+                            return null;
+                          },
+                        ),
+                      )
                     ],
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Required field";
-                      }
-                      return null;
-                    },
-                  ),
-                  SizedBox(height: 16),
-                  MyTextField(
-                    controller: birthdateController,
-                    obscureText: false,
-                    keyboardType: TextInputType.datetime,
-                    labelText: "Birthdate",
-                    hintText: "Type your birthdate",
-                    inputFormatters: [
-                      MaskTextInputFormatter(mask: '##/##/####')
-                    ],
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Required field";
-                      }
-                      return null;
-                    },
                   ),
                   SizedBox(
                     height: 25,

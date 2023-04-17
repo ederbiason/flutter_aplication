@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_aplication/components/my_button.dart';
 import 'package:flutter_aplication/components/my_textfield.dart';
+import 'package:flutter_aplication/pages/home_page.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class CreateReportPage extends StatefulWidget {
@@ -211,7 +212,12 @@ class _CreateReportPageState extends State<CreateReportPage> {
                     height: 25,
                   ),
                   MyButton(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomePage()),
+                      );
+                    },
                     text: "Send Report",
                   ),
                   SizedBox(

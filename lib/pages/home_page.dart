@@ -49,6 +49,11 @@ class _HomePageState extends State<HomePage> {
               onTap: () {},
             ),
             ListTile(
+              leading: Icon(Icons.report_gmailerrorred),
+              title: Text('Denúncias'),
+              onTap: () {},
+            ),
+            ListTile(
               leading: Icon(Icons.settings),
               title: Text('Configurações'),
               onTap: () {},
